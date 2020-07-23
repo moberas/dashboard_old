@@ -10,10 +10,12 @@ class LoginButton extends StatelessWidget {
       {Key key, this.text, this.icon, this.color, this.loginMethod})
       : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200, //MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery.of(context).size.width * 0.2,
       child: FlatButton(
         padding: EdgeInsets.all(20),
         textColor: Colors.white,

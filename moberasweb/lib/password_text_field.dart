@@ -36,33 +36,36 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      validator: widget.validator,
-      focusNode: widget.focusNode,
-      obscureText: showPassword,
-      textInputAction: TextInputAction.send,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      decoration: InputDecoration(
-        hintText: 'Senha',
-        prefixIcon: Icon(Icons.lock),
-        contentPadding: const EdgeInsets.all(8),
-        border: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.2,
+      child: TextFormField(
+        controller: widget.controller,
+        validator: widget.validator,
+        focusNode: widget.focusNode,
+        obscureText: showPassword,
+        textInputAction: TextInputAction.send,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        decoration: InputDecoration(
+          hintText: 'Senha',
+          prefixIcon: Icon(Icons.lock),
+          contentPadding: const EdgeInsets.all(8),
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
           ),
-        ),
-        suffixIcon: IconButton(
-          icon: Icon(
-            // Based on passwordVisible state choose the icon
-            showPassword ? Icons.visibility_off : Icons.visibility,
-            color: getColor(),
+          suffixIcon: IconButton(
+            icon: Icon(
+              // Based on passwordVisible state choose the icon
+              showPassword ? Icons.visibility_off : Icons.visibility,
+              color: getColor(),
+            ),
+            onPressed: () {
+              setState(() {
+                showPassword = !showPassword;
+              });
+            },
           ),
-          onPressed: () {
-            setState(() {
-              showPassword = !showPassword;
-            });
-          },
         ),
       ),
     );

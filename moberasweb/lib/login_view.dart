@@ -15,17 +15,20 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final formKey = GlobalKey<FormState>();
+
+  TextEditingController emailController;
+  FocusNode emailFocusNode;
+
   TextEditingController passwordController;
-  TextEditingController crmController;
-  FocusNode crmFocusNode;
   FocusNode passwordFocusNode;
 
   @override
   void initState() {
     super.initState();
-    passwordController = TextEditingController(text: 'newton123');
+    emailController = TextEditingController();
+    emailFocusNode = FocusNode();
+    passwordController = TextEditingController();
     passwordFocusNode = FocusNode();
-    crmFocusNode = FocusNode();
   }
 
   @override
@@ -37,49 +40,39 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: MobAppBar(
-          title: 'MobEras',
-        ),
-        body: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
+    return Scaffold(
+      appBar: MobAppBar(
+        title: 'MobEras',
+      ),
+      body: Form(
+        key: formKey,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Center(
             child: Column(
               children: <Widget>[
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    /*child: Image.asset(
-                      'assets/images/logo_min.png',
-                      height: 200, //MediaQuery.of(context).size.height * 0.2,
-                    ),*/
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    'assets/images/logo_min.png',
+                    height: MediaQuery.of(context).size.height * 0.25,
                   ),
                 ),
                 SizedBox(
-                  width: 100, //MediaQuery.of(context).size.width * 0.4,
+                  width: MediaQuery.of(context).size.width * 0.1,
                   child: Divider(
                     color: Colors.lightBlue,
                   ),
                 ),
-                verticalSpaceMedium,
-                Row(
-                  children: <Widget>[
-                    horizontalSpaceMedium,
-                    Expanded(
-                      flex: 3,
-                      // ignore: missing_required_param
-                      child: EmailTextField(
-                        key: ValueKey('emailinput'),
-                        controller: crmController,
-                        focusNode: crmFocusNode,
-                        //validator: (_) => local
-                        //  .translate(model.validateCrm(crmController.text)),
-                        onFieldSubmitted: null,
-                      ),
-                    ),
-                  ],
+                verticalSpaceLarge,
+                // ignore: missing_required_param
+                EmailTextField(
+                  key: ValueKey('emailinput'),
+                  controller: emailController,
+                  focusNode: emailFocusNode,
+                  //validator: (_) => local
+                  //  .translate(model.validateCrm(crmController.text)),
+                  onFieldSubmitted: (_) => print('Email field submitted'),
                 ),
                 verticalSpaceMedium,
                 // ignore: missing_required_param
@@ -88,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                   controller: passwordController,
                   focusNode: passwordFocusNode,
                   onFieldSubmitted: (_) {
-                    print('hello there');
+                    print('Password field submitted');
                     //if (!formKey.currentState.validate()) return;
                     //model.login(
                     //: crmController.text,
@@ -104,30 +97,21 @@ class _LoginViewState extends State<LoginView> {
                   icon: FontAwesomeIcons.signInAlt,
                   color: Color.fromARGB(255, 51, 173, 200),
                   text: 'Login',
-                  loginMethod: () async {
-                    if (!formKey.currentState.validate()) {
-                      return Future.value(null);
-                    } else {
-                      return print; //model.login(
-                      //crm: crmController.text,
-                      //password: passwordController.text);
-                    }
-                  },
+                  loginMethod: () => print('Clicou no botão de login.'),
+//                  loginMethod: () async {
+//                    if (!formKey.currentState.validate()) {
+//                      return Future.value(null);
+//                    } else {
+//                      return model.login(
+//                      crm: crmController.text,
+//                      password: passwordController.text);
+//                    }
+//                  },
                 ),
-                verticalSpaceSmall,
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-                  child: GestureDetector(
-                      onTap: () => print('Clique para mudar senha'),
-                      //onTap: () => model.navigateToPasswordRecovery(),
-                      child: Container(
-                        width: 175.0,
-                        padding: EdgeInsets.all(15.0),
-                        color: Colors.transparent,
-                        child: Column(children: [
-                          Text('Recuperar senha'),
-                        ]),
-                      )),
+                verticalSpaceMedium,
+                InkWell(
+                      child: Text('Recuperar senha'),
+                      onTap: () => print('Clicou para recuperar a senha')
                 ),
               ],
             ),
@@ -137,3 +121,4 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+

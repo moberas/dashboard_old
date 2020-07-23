@@ -20,25 +20,24 @@ class EmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var maskFormatter = MaskTextInputFormatter(filter: {
-      '#': RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+")
+      '#': RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+")
     });
-    return TextFormField(
-      inputFormatters: [
-        maskFormatter,
-        // ignore: deprecated_member_use
-        WhitelistingTextInputFormatter.digitsOnly
-      ],
-      controller: controller,
-      validator: validator,
-      focusNode: focusNode,
-      obscureText: false,
-      textInputAction: TextInputAction.next,
-      onFieldSubmitted: onFieldSubmitted,
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: const EdgeInsets.all(8),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.2,
+      child: TextFormField(
+        inputFormatters: [
+          maskFormatter,
+        ],
+        controller: controller,
+        validator: validator,
+        focusNode: focusNode,
+        obscureText: false,
+        textInputAction: TextInputAction.send,
+        onFieldSubmitted: onFieldSubmitted,
+        decoration: InputDecoration(
+          hintText: 'Email',
+          contentPadding: const EdgeInsets.all(8),
+        ),
       ),
     );
   }
