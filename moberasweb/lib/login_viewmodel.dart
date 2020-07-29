@@ -13,23 +13,23 @@ class LoginViewModel extends BaseViewModel with Validators {
   //final AnalyticsService _analyticsService = locator<AnalyticsService>();
   //final SnackbarService _snackbarService = locator<SnackbarService>();
 
-  /*Future checkSignInResult(result) async {
+  Future checkSignInResult(result) async {
     if (result is bool) {
       if (result) {
-        await _analyticsService.logLogin('email');
+        /*await _analyticsService.logLogin('email');
         unawaited(_navigationService
-            .pushNamedAndRemoveUntil(Routes.startupViewRouter));
+            .pushNamedAndRemoveUntil(Routes.startupViewRouter)); */
       } else {
-        await _dialogService.showDialog(
+        /*await _dialogService.showDialog(
           title: 'Erro na autenticação',
           description: 'Senha ou usuário inválidos.',
-        );
+        );*/
       }
     } else {
-      await _dialogService.showDialog(
+      /*await _dialogService.showDialog(
         title: 'Erro na autenticação',
         description: result,
-      );
+      );*/
     }
   }
 
@@ -46,11 +46,11 @@ class LoginViewModel extends BaseViewModel with Validators {
     setBusy(true);
     var success = await _authenticationService.login(email, password);
     if (success) {
-      unawaited(_navigationService.navigateTo(Routes.startupViewRouter));
+      //unawaited(_navigationService.navigateTo(Routes.startupViewRouter));
     } else {
-      _snackbarService.showSnackbar(
-          message: 'Usuário ou senha inválidos', title: 'Login', barBlur: 10.0);
+      /*_snackbarService.showSnackbar(
+          message: 'Usuário ou senha inválidos', title: 'Login', barBlur: 10.0);*/
     }
     setBusy(false);
-  }*/
+  }
 }
