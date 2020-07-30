@@ -524,12 +524,6 @@
       "languageVersion": "2.5"
     },
     {
-      "name": "injectable_generator",
-      "rootUri": "file:///C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/injectable_generator-0.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.5"
-    },
-    {
       "name": "intl",
       "rootUri": "file:///C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.16.1",
       "packageUri": "lib/",
@@ -1004,7 +998,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-07-30T17:58:58.208008Z",
+  "generated": "2020-07-30T19:11:59.231118Z",
   "generator": "pub",
   "generatorVersion": "2.10.0-0.0.dev.flutter-24c7666def"
 }
