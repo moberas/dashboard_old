@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:moberasweb/login_view.dart';
+import 'package:moberasweb/commons/logger.dart';
+import 'package:moberasweb/locator.dart';
+import 'package:moberasweb/router/router.gr.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLogger();
+  setupLocator();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'mobEras DASHBOARD',
       theme: ThemeData(
-      primarySwatch: Colors.blue,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginView()
+      navigatorKey: locator<NavigationService>().navigatorKey,
+      initialRoute: Routes.loginView,
+      onGenerateRoute: Router().onGenerateRoute,
     );
   }
 }
