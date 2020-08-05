@@ -6,8 +6,6 @@ import 'package:moberasweb/commons/ui/login_button.dart';
 import 'package:moberasweb/commons/ui/password_text_field.dart';
 import 'package:moberasweb/commons/ui_helpers.dart';
 import 'package:moberasweb/commons/validators.dart';
-import 'package:moberasweb/locator.dart';
-import 'package:moberasweb/login/services/authentication_service.dart';
 import 'package:moberasweb/login/ui/login_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:string_validator/string_validator.dart';
@@ -19,8 +17,6 @@ class LoginView extends StatefulWidget with Validators {
 
 class _LoginViewState extends State<LoginView> {
   final formKey = GlobalKey<FormState>();
-  final AuthenticationService _authenticationService =
-      locator<AuthenticationService>();
 
   TextEditingController emailController;
   FocusNode emailFocusNode;
@@ -31,9 +27,9 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
+    emailController = TextEditingController(text: 'moberas@moberas.com');
     emailFocusNode = FocusNode();
-    passwordController = TextEditingController();
+    passwordController = TextEditingController(text: '123456');
     passwordFocusNode = FocusNode();
   }
 

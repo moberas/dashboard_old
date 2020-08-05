@@ -47,7 +47,7 @@ class LoginViewModel extends BaseViewModel with Validators {
     setBusy(true);
     var success = await _authenticationService.login(email, password);
     if (success) {
-      _navigationService.navigateTo(Routes.loginView);
+      _navigationService.navigateTo(Routes.pacientView);
     } else {
       _snackbarService.showSnackbar(
           message: 'Usuário ou senha inválidos', title: 'Login');
