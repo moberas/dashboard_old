@@ -44,7 +44,48 @@ class PacientView extends StatelessWidget {
                                     height: 24,
                                     width: 15,
                                   )
-                                ])
+                                ]),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: Text('Lista de pacientes:\n'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                          '${model.pacients.toString()}\n'),
+                                    ),
+                                    MaterialButton(
+                                      onPressed: () => null,
+                                      child: Text('to'),
+                                      color: Theme.of(context)
+                                          .buttonTheme
+                                          .colorScheme
+                                          .primary,
+                                    ),
+                                    MaterialButton(
+                                      onPressed: () => null,
+                                      child: Text('aqui'),
+                                      color: Theme.of(context)
+                                          .buttonTheme
+                                          .colorScheme
+                                          .primary,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            )
                           ],
                         ),
                       ),

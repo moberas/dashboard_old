@@ -11,6 +11,11 @@ class PacientViewModel extends BaseViewModel {
 
   var cpfController = TextEditingController();
 
-  Future<List<Pacient>> findPacientByNameOrCpf() async => runBusyFuture(
-      _pacientService.findByNameOrCpf(nameController.text, cpfController.text));
+  List<Pacient> pacients;
+
+  Future<List<Pacient>> findPacientByNameOrCpf() async {
+    pacients = await runBusyFuture(_pacientService.findByNameOrCpf(
+        nameController.text, cpfController.text));
+    return pacients;
+  }
 }
