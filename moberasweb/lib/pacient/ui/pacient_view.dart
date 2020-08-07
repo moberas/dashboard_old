@@ -68,7 +68,7 @@ class PacientView extends StatelessWidget {
                                     ),
                                     MaterialButton(
                                       onPressed: () => null,
-                                      child: Text('to'),
+                                      child: Text('Enviar ao Paciente'),
                                       color: Theme.of(context)
                                           .buttonTheme
                                           .colorScheme
@@ -76,7 +76,7 @@ class PacientView extends StatelessWidget {
                                     ),
                                     MaterialButton(
                                       onPressed: () => null,
-                                      child: Text('aqui'),
+                                      child: Text('Perfil Paciente'),
                                       color: Theme.of(context)
                                           .buttonTheme
                                           .colorScheme

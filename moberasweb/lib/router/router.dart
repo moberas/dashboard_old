@@ -6,6 +6,7 @@ import 'package:moberasweb/pacient/ui/pacient_view.dart';
   routes: <AutoRoute>[
     MaterialRoute(page: LoginView, initial: true),
     MaterialRoute(page: PacientView),
+    MaterialRoute(page: PacientProfileView),
   ],
 )
 class $Router {}
