@@ -10,14 +10,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../login/ui/login_view.dart';
+import '../pacient/ui/pacient_profile_view.dart';
 import '../pacient/ui/pacient_view.dart';
 
 class Routes {
   static const String loginView = '/';
   static const String pacientView = '/pacient-view';
+  static const String pacientProfileView = '/pacient-profile-view';
   static const all = <String>{
     loginView,
     pacientView,
+    pacientProfileView,
   };
 }
 
@@ -27,6 +30,7 @@ class Router extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.pacientView, page: PacientView),
+    RouteDef(Routes.pacientProfileView, page: PacientProfileView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -40,6 +44,12 @@ class Router extends RouterBase {
     PacientView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => PacientView(),
+        settings: data,
+      );
+    },
+    PacientProfileView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => PacientProfileView(),
         settings: data,
       );
     },

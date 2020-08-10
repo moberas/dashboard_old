@@ -75,7 +75,7 @@ class PacientView extends StatelessWidget {
                                           .primary,
                                     ),
                                     MaterialButton(
-                                      onPressed: () => null,
+                                      onPressed: () => model.profile(),
                                       child: Text('Perfil Paciente'),
                                       color: Theme.of(context)
                                           .buttonTheme

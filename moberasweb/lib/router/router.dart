@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:moberasweb/login/ui/login_view.dart';
+import 'package:moberasweb/pacient/ui/pacient_profile_view.dart';
 import 'package:moberasweb/pacient/ui/pacient_view.dart';
 
 @MaterialAutoRouter(

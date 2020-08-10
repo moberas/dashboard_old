@@ -5,7 +5,7 @@
 // **************************************************************************
 
 import 'package:get_it/get_it.dart';
-import 'package:injectable/get_it_helper.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'login/services/authentication_service.dart';

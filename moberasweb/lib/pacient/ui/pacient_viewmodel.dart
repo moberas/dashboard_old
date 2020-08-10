@@ -24,6 +24,6 @@ class PacientViewModel extends BaseViewModel {
   }
 
   void profile() {
-    _navigationService.navigateTo(Routes.pacientView);
+    _navigationService.navigateTo(Routes.pacientProfileView);
   }
 }
