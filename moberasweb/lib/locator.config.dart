@@ -17,12 +17,8 @@ import 'third_party_services_module.dart';
 /// adds generated dependencies
 /// to the provided [GetIt] instance
 
-GetIt $initGetIt(
-  GetIt get, {
-  String environment,
-  EnvironmentFilter environmentFilter,
-}) {
-  final gh = GetItHelper(get, environment, environmentFilter);
+void $initGetIt(GetIt g, {String environment}) {
+  final gh = GetItHelper(g, environment);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
   gh.lazySingleton<IPacientService>(() => IPacientServiceImpl());
@@ -33,7 +29,6 @@ GetIt $initGetIt(
 
   // Eager singletons must be registered in the right order
   gh.singleton<AuthenticationService>(AuthenticationServiceImpl());
-  return get;
 }
 
 class _$ThirdPartyServicesModule extends ThirdPartyServicesModule {

@@ -67,16 +67,16 @@ class PacientView extends StatelessWidget {
                                           '${model.pacients.toString()}\n'),
                                     ),
                                     MaterialButton(
-                                      onPressed: () => model.profile(),
-                                      child: Text('Perfil do Paciente'),
+                                      onPressed: () => null,
+                                      child: Text('Enviar ao Paciente'),
                                       color: Theme.of(context)
                                           .buttonTheme
                                           .colorScheme
                                           .primary,
                                     ),
                                     MaterialButton(
-                                      onPressed: () => null,
-                                      child: Text('Enviar Mensagem'),
+                                      onPressed: () => model.profile(),
+                                      child: Text('Perfil Paciente'),
                                       color: Theme.of(context)
                                           .buttonTheme
                                           .colorScheme
@@ -96,14 +96,3 @@ class PacientView extends StatelessWidget {
             ));
   }
 }
-
-/*class _PacientList extends ViewModelWidget<PacientViewModel> {
-  _PacientList({Key key}) : super(key: key, reactive: true);
-
-  @override
-  Widget build(BuildContext context, PacientViewModel viewModel) => 
-    // TODO: implement build
-    viewModel.data != null
-    ?
-
-}*/
