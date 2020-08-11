@@ -22,12 +22,44 @@ class PacientProfileView extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            /*Expanded(
-              flex: 1,
+            Expanded(
               child: Container(
-                color: Colors.black12,
+                color: Colors.green,
+                child: Row(
+                  children: <Widget>[
+                    new Expanded(
+                      child: new OutlineButton(
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0)),
+                        color: Colors.green,
+                        highlightedBorderColor: Colors.green,
+                        onPressed: () => model.returntoview(),
+                        child: new Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20.0,
+                            horizontal: 20.0,
+                          ),
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Expanded(
+                                child: Text(
+                                  "Voltar A Tela De Pesquisa",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),*/
+            ),
           ],
         ),
       ),
