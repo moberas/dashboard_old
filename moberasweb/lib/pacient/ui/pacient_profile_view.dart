@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moberasweb/pacient/ui/get_map_widget.dart';
 import 'package:moberasweb/pacient/ui/pacient_profile_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,6 +15,12 @@ class PacientProfileView extends StatelessWidget {
               flex: 1,
               child: Container(
                 color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(500.0, 10.0, 500.0, 10.0),
+                  child: Container(
+                    child: getMap(),
+                  ),
+                )
               ),
             ),
             Expanded(
