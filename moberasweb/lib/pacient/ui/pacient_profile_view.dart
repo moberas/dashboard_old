@@ -19,7 +19,7 @@ class PacientProfileView extends StatelessWidget {
                     padding:
                         const EdgeInsets.fromLTRB(500.0, 10.0, 500.0, 10.0),
                     child: Container(
-                      child: getMap(),
+                      child: getMap(-19, -48),
                     ),
                   )),
             ),
