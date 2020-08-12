@@ -462,20 +462,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  google_maps_flutter:
+  google_maps:
     dependency: "direct main"
     description:
-      name: google_maps_flutter
+      name: google_maps
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.29"
-  google_maps_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: google_maps_flutter_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
+    version: "3.4.4"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -581,6 +574,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.2"
+  js_wrapping:
+    dependency: transitive
+    description:
+      name: js_wrapping
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   json_annotation:
     dependency: "direct main"
     description:
@@ -657,7 +657,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.6+3"
+    version: "0.9.7"
   mockito:
     dependency: "direct dev"
     description:
