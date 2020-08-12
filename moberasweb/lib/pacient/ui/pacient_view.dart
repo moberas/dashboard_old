@@ -7,6 +7,7 @@ class PacientView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PacientViewModel>.reactive(
         viewModelBuilder: () => PacientViewModel(),
+        //onModelReady: (model) => ,
         builder: (context, model, child) => Scaffold(
               body: Scrollbar(
                 child: SingleChildScrollView(
@@ -61,26 +62,24 @@ class PacientView extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Container(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                          '${model.pacients.toString()}\n'),
+                                    Expanded(
+                                      child: Container(
+                                        child: Visibility(
+                                          visible: true,
+                                          child: _PacientList(),
+                                        ),
+                                      ),
                                     ),
-                                    MaterialButton(
-                                      onPressed: () => null,
-                                      child: Text('Enviar ao Paciente'),
-                                      color: Theme.of(context)
-                                          .buttonTheme
-                                          .colorScheme
-                                          .primary,
-                                    ),
-                                    MaterialButton(
-                                      onPressed: () => model.profile(),
-                                      child: Text('Perfil Paciente'),
-                                      color: Theme.of(context)
-                                          .buttonTheme
-                                          .colorScheme
-                                          .primary,
+                                    ButtonBar(
+                                      children: [
+                                        FlatButton(
+                                            onPressed: null,
+                                            child: Text('Enviar Mensagem')),
+                                        FlatButton(
+                                          onPressed: () => model.profile(),
+                                          child: Text('Perfil do Paciente'),
+                                        )
+                                      ],
                                     ),
                                   ],
                                 )
@@ -95,4 +94,19 @@ class PacientView extends StatelessWidget {
               ),
             ));
   }
+}
+
+// ignore: unused_element
+class _PacientList extends ViewModelWidget<PacientViewModel> {
+  _PacientList({Key key}) : super(key: key, reactive: true);
+
+  @override
+  Widget build(BuildContext context, PacientViewModel viewModel) =>
+      viewModel.pacients != null
+          ? ListView.builder(
+              shrinkWrap: true,
+              itemCount: viewModel.pacients?.length,
+              itemBuilder: (context, index) =>
+                  Container(child: Text(viewModel.pacients[index].name)))
+          : CircularProgressIndicator();
 }

@@ -22,12 +22,6 @@ class PacientProfileView extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            /*Expanded(
-              flex: 1,
-              child: Container(
-                color: Colors.black12,
-              ),
-            ),*/
           ],
         ),
       ),

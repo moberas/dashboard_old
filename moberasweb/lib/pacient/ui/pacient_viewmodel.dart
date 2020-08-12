@@ -17,10 +17,9 @@ class PacientViewModel extends BaseViewModel {
 
   List<Pacient> pacients;
 
-  Future<List<Pacient>> findPacientByNameOrCpf() async {
+  Future<void> findPacientByNameOrCpf() async {
     pacients = await runBusyFuture(_pacientService.findByNameOrCpf(
         nameController.text, cpfController.text));
-    return pacients;
   }
 
   void profile() {
