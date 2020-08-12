@@ -5,12 +5,10 @@ import 'package:google_maps/google_maps.dart';
 import 'dart:ui' as ui;
 
 Widget getMap() {
-
   String htmlId = '7';
 
   // ignore: undefined_prefixed_name
   ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
-
     final myLatlng = LatLng(-19.9167, -43.9345);
 
     final mapOptions = MapOptions()
@@ -28,8 +26,7 @@ Widget getMap() {
     Marker(MarkerOptions()
       ..position = myLatlng
       ..map = map
-      ..title = 'Hello World!'
-    );
+      ..title = 'Hello World!');
 
     return elem;
   });

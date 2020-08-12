@@ -29,42 +29,24 @@ class PacientProfileView extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            Expanded(
-              child: Container(
-                color: Colors.green,
-                child: Row(
-                  children: <Widget>[
-                    new Expanded(
-                      child: new OutlineButton(
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)),
-                        color: Colors.green,
-                        highlightedBorderColor: Colors.green,
-                        onPressed: () => model.returntoview(),
-                        child: new Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20.0,
-                            horizontal: 20.0,
-                          ),
-                          child: new Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              new Expanded(
-                                child: Text(
-                                  "Voltar A Tela De Pesquisa",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+            OutlineButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0)),
+              color: Colors.green[300],
+              highlightedBorderColor: Colors.green[300],
+              onPressed: () => model.returntoview(),
+              child: new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Expanded(
+                    child: Text(
+                      "Voltar A Tela De Pesquisa",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.black87, fontWeight: FontWeight.bold),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
