@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:moberasweb/login/models/user_profile.dart';
 import 'package:moberasweb/pacient/ui/get_map_widget.dart';
 import 'package:moberasweb/pacient/ui/pacient_profile_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class PacientProfileView extends StatelessWidget {
+  final UserProfile profile;
+  PacientProfileView({this.profile});
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PacientProfileViewModel>.reactive(
