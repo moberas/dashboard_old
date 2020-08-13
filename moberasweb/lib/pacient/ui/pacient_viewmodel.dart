@@ -26,5 +26,7 @@ class PacientViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.pacientProfileView);
   }
 
+  // ignore: unused_element
+  // TODO criar function no banco para push da mensagem
   _messageModalBottomSheet(BuildContext context) {}
 }

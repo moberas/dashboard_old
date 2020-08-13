@@ -134,6 +134,18 @@ class PacientView extends StatelessWidget {
                       ),
                     ],
                   ),
+                  ButtonBar(
+                    children: [
+                      FlatButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text('Cancelar')),
+                      FlatButton(
+                        // TODO inserir rota para envio da mensagem
+                        onPressed: () => null,
+                        child: Text('Enviar'),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
@@ -154,5 +166,5 @@ class _PacientList extends ViewModelWidget<PacientViewModel> {
               itemCount: viewModel.pacients?.length,
               itemBuilder: (context, index) =>
                   Container(child: Text(viewModel.pacients[index].name)))
-          : CircularProgressIndicator();
+          : LinearProgressIndicator();
 }
