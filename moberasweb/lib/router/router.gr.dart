@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../login/models/user_profile.dart';
 import '../login/ui/login_view.dart';
 import '../pacient/ui/pacient_profile_view.dart';
 import '../pacient/ui/pacient_view.dart';
@@ -48,10 +49,23 @@ class Router extends RouterBase {
       );
     },
     PacientProfileView: (data) {
+      final args = data.getArgs<PacientProfileViewArguments>(
+        orElse: () => PacientProfileViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => PacientProfileView(),
+        builder: (context) => PacientProfileView(profile: args.profile),
         settings: data,
       );
     },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// PacientProfileView arguments holder class
+class PacientProfileViewArguments {
+  final UserProfile profile;
+  PacientProfileViewArguments({this.profile});
 }
