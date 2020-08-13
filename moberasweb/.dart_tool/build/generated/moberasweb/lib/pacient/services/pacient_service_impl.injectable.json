@@ -1,1 +1,0 @@
-[{"type":{"name":"IPacientService","import":"package:moberasweb/pacient/services/pacient_service_interface.dart"},"typeImpl":{"name":"IPacientServiceImpl","import":"package:moberasweb/pacient/services/pacient_service_impl.dart"},"isAsync":false,"preResolve":false,"injectableType":2,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":"","isAbstract":false}]
