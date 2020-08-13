@@ -1,12 +1,69 @@
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:moberasweb/login/models/user_profile.dart';
+import 'package:moberasweb/pacient/models/pacient.dart';
 import 'package:moberasweb/pacient/ui/get_map_widget.dart';
 import 'package:moberasweb/pacient/ui/pacient_profile_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class PacientProfileView extends StatelessWidget {
+
   final UserProfile profile;
   PacientProfileView({this.profile});
+
+  Widget createTextWidget(String text)
+  {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 30),
+    );
+  }
+
+
+  Widget createDivider(BuildContext context)
+  {
+    return SizedBox(
+        height: 20.0,
+        width: MediaQuery.of(context).size.width * 0.95,
+        child: Divider(
+          color: Colors.grey.shade500,
+        ));
+  }
+
+
+  Widget createPacientInfoBox(BuildContext context, UserProfile pacient) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(5)),
+      child: Container(
+        padding: EdgeInsets.all(5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            createTextWidget('Nome: ' + pacient.displayName),
+            createDivider(context),
+            createTextWidget('Localização: ' + pacient.loginLocation.latitude.toString() + ', ' + pacient.loginLocation.longitude.toString()),
+            createDivider(context),
+            createTextWidget('Status: ' + _getPacientStatusString(pacient.online)),
+            createDivider(context),
+            createTextWidget('Pontuação: ' + pacient.score.toString()),
+            createDivider(context),
+            createTextWidget('ID: ' + pacient.uid),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _getPacientStatusString(bool online) {
+    return online ? 'Online' : 'Offline';
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PacientProfileViewModel>.reactive(
@@ -18,12 +75,16 @@ class PacientProfileView extends StatelessWidget {
               flex: 1,
               child: Container(
                   color: Colors.red,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.fromLTRB(500.0, 10.0, 500.0, 10.0),
-                    child: Container(
-                      child: getMap(-19, -48),
-                    ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                          child: createPacientInfoBox(
+                              context,
+                              profile)),
+                      Expanded(child: Container(child: getMap(profile.loginLocation.latitude, profile.loginLocation.longitude))),
+                    ],
                   )),
             ),
             Expanded(
