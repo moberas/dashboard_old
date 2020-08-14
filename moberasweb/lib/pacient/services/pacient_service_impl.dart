@@ -7,7 +7,9 @@ import 'package:moberasweb/pacient/services/pacient_service_interface.dart';
 @LazySingleton(as: IPacientService)
 class IPacientServiceImpl extends IPacientService {
   @override
-  Future<void> changeTheme(ThemeCfg theme, String uid) {}
+  Future<void> changeTheme(ThemeCfg theme, String uid) {
+    return null;
+  }
 
   @override
   Future<List<Pacient>> findByNameOrCpf(String name, String cpf) async {
@@ -27,5 +29,7 @@ class IPacientServiceImpl extends IPacientService {
   }
 
   @override
-  Future<void> sendMsg(String uid, String msg) {}
+  Future<void> sendMsg(String uid, String msg) {
+    return null;
+  }
 }

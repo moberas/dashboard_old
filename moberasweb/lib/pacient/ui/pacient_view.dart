@@ -73,7 +73,7 @@ class PacientView extends StatelessWidget {
                                     ButtonBar(
                                       children: [
                                         FlatButton(
-                                            onPressed: null,
+                                            onPressed: () => null,
                                             child: Text('Enviar Mensagem')),
                                         FlatButton(
                                           onPressed: () => model.profile(),

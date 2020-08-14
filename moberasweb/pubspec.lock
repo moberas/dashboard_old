@@ -791,6 +791,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.5"
+  quick_form:
+    dependency: "direct main"
+    description:
+      name: quick_form
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   quiver:
     dependency: "direct main"
     description:

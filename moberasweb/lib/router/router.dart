@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:moberasweb/activities/ui/activities_view.dart';
 import 'package:moberasweb/login/ui/login_view.dart';
 import 'package:moberasweb/pacient/ui/pacient_profile_view.dart';
 import 'package:moberasweb/pacient/ui/pacient_view.dart';
@@ -8,6 +9,7 @@ import 'package:moberasweb/pacient/ui/pacient_view.dart';
     MaterialRoute(page: LoginView, initial: true),
     MaterialRoute(page: PacientView),
     MaterialRoute(page: PacientProfileView),
+    MaterialRoute(page: ActivitiesView),
   ],
 )
 class $Router {}
