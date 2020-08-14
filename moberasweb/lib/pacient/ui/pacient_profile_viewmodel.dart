@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moberasweb/locator.dart';
-import 'package:moberasweb/pacient/models/pacient.dart';
+import 'package:moberasweb/login/models/user_profile.dart';
 import 'package:moberasweb/pacient/services/pacient_service_interface.dart';
 import 'package:moberasweb/router/router.gr.dart';
 import 'package:stacked/stacked.dart';
@@ -15,9 +15,9 @@ class PacientProfileViewModel extends BaseViewModel {
 
   var cpfController = TextEditingController();
 
-  List<Pacient> pacients;
+  List<UserProfile> pacients;
 
-  Future<List<Pacient>> findPacientByNameOrCpf() async {
+  Future<List<UserProfile>> findPacientByNameOrCpf() async {
     pacients = await runBusyFuture(_pacientService.findByNameOrCpf(
         nameController.text, cpfController.text));
     return pacients;

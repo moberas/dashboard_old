@@ -1,21 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:moberasweb/commons/logger.dart';
 
 class UserProfile {
   static const String CollectionPath = 'users-moberas';
 
-  final String name;
+  final String displayName;
   final String email;
   final String username;
 
-  UserProfile({this.name, this.email, this.username});
+  final GeoPoint loginLocation;
+  final bool online;
+  final int score;
+  final String uid;
+
+  UserProfile({this.displayName, this.email, this.username, this.loginLocation, this.online, this.score, this.uid});
 
   factory UserProfile.fromData(Map<String, dynamic> data) {
     if (data == null) return null;
     try {
       return UserProfile(
-          name: data['name'] ?? '',
+          displayName: data['displayName'] ?? '',
           email: data['email'] ?? '',
-          username: data['username'] ?? '');
+          username: data['username'] ?? '',
+          loginLocation: data['loginLocation'],
+          online: data['online'],
+          score: data['score'],
+          uid: data['uid']
+      );
     } catch (e) {
       Logger.e(e.message);
       return null;
@@ -24,7 +35,7 @@ class UserProfile {
 
   Future<Map<String, dynamic>> toJson() async {
     return {
-      'name': name ?? name,
+      'displayName': displayName ?? displayName,
       'email': email ?? email,
       'username': username ?? username,
     };
@@ -33,7 +44,7 @@ class UserProfile {
   @override
   String toString() {
     return 'Name: ' +
-        name +
+        displayName +
         '\n' +
         'Email: ' +
         email +

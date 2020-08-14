@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:moberasweb/commons/logger.dart';
 
-class Pacient {
-  final String name;
+class Pacient
+{
 
+  final String name;
   final GeoPoint loginLocation;
   final bool online;
   final int score;

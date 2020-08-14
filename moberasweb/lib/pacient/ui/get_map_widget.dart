@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
 import 'dart:ui' as ui;
 
-Widget getMap() {
+Widget getMap(double latitude, double longitude) {
 
   String htmlId = '7';
 
   // ignore: undefined_prefixed_name
   ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
 
-    final myLatlng = LatLng(-19.9167, -43.9345);
+    final location = LatLng(latitude, longitude);
 
     final mapOptions = MapOptions()
       ..zoom = 10
-      ..center = myLatlng;
+      ..center = location;
 
     final elem = DivElement()
       ..id = htmlId
@@ -26,9 +26,9 @@ Widget getMap() {
     final map = GMap(elem, mapOptions);
 
     Marker(MarkerOptions()
-      ..position = myLatlng
+      ..position = location
       ..map = map
-      ..title = 'Hello World!'
+      ..title = 'Moberas'
     );
 
     return elem;

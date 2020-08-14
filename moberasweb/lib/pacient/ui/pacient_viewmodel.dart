@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moberasweb/locator.dart';
-import 'package:moberasweb/pacient/models/pacient.dart';
+import 'package:moberasweb/login/models/user_profile.dart';
 import 'package:moberasweb/pacient/services/pacient_service_interface.dart';
 import 'package:moberasweb/router/router.gr.dart';
 import 'package:stacked/stacked.dart';
@@ -15,14 +15,19 @@ class PacientViewModel extends BaseViewModel {
 
   var cpfController = TextEditingController();
 
-  List<Pacient> pacients;
+  List<UserProfile> pacients;
 
   Future<void> findPacientByNameOrCpf() async {
     pacients = await runBusyFuture(_pacientService.findByNameOrCpf(
         nameController.text, cpfController.text));
   }
 
-  void profile() {
-    _navigationService.navigateTo(Routes.pacientProfileView);
+  void profile(UserProfile profile) {
+    _navigationService.navigateTo(Routes.pacientProfileView,
+        arguments: PacientProfileViewArguments(profile: profile));
   }
+
+  // ignore: unused_element
+  // TODO criar function no banco para push da mensagem
+  _messageModalBottomSheet(BuildContext context) {}
 }

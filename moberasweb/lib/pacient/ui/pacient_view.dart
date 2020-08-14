@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:moberasweb/locator.dart';
 import 'package:moberasweb/pacient/ui/pacient_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+
+import 'pacient_profile_viewmodel.dart';
 
 class PacientView extends StatelessWidget {
   @override
@@ -76,7 +79,9 @@ class PacientView extends StatelessWidget {
                                             onPressed: () => null,
                                             child: Text('Enviar Mensagem')),
                                         FlatButton(
-                                          onPressed: () => model.profile(),
+                                          onPressed: () {
+                                            model.profile(model.pacients[0]);
+                                          },
                                           child: Text('Perfil do Paciente'),
                                         )
                                       ],
@@ -107,6 +112,6 @@ class _PacientList extends ViewModelWidget<PacientViewModel> {
               shrinkWrap: true,
               itemCount: viewModel.pacients?.length,
               itemBuilder: (context, index) =>
-                  Container(child: Text(viewModel.pacients[index].name)))
+                  Container(child: Text(viewModel.pacients[index].displayName)))
           : CircularProgressIndicator();
 }
