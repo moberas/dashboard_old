@@ -6,6 +6,8 @@ import 'package:stacked/stacked.dart';
 import 'pacient_profile_viewmodel.dart';
 
 class PacientView extends StatelessWidget {
+  var textController;
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PacientViewModel>.reactive(
@@ -76,7 +78,9 @@ class PacientView extends StatelessWidget {
                                     ButtonBar(
                                       children: [
                                         FlatButton(
-                                            onPressed: () => null,
+                                            onPressed: () =>
+                                                _messageModalBottomSheet(
+                                                    context),
                                             child: Text('Enviar Mensagem')),
                                         FlatButton(
                                           onPressed: () {
@@ -98,6 +102,62 @@ class PacientView extends StatelessWidget {
                 ),
               ),
             ));
+  }
+
+  void _messageModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            height: MediaQuery.of(context).size.height * .60,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Spacer(),
+                      IconButton(
+                        icon: Icon(
+                          Icons.cancel,
+                          color: Colors.blue,
+                          size: 25,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: textController,
+                          keyboardType: TextInputType.name,
+                          enableSuggestions: true,
+                          decoration: InputDecoration(labelText: 'Mensagem'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ButtonBar(
+                    children: [
+                      FlatButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text('Cancelar')),
+                      FlatButton(
+                        // TODO inserir rota para envio da mensagem
+                        onPressed: () => null,
+                        child: Text('Enviar'),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
 
