@@ -1,11 +1,18 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moberasweb/commons/firestore/firestore_data_wrapper.dart';
+import 'package:moberasweb/commons/logger.dart';
 import 'package:moberasweb/login/models/user_profile.dart';
 import 'package:moberasweb/pacient/models/theme_cfg.dart';
 import 'package:moberasweb/pacient/services/pacient_service_interface.dart';
 
 @LazySingleton(as: IPacientService)
 class IPacientServiceImpl extends IPacientService {
+  final HttpsCallable callableMobErasPacientPush =
+      CloudFunctions.instance.getHttpsCallable(
+    functionName: 'pacientPush',
+  );
+
   @override
   Future<void> changeTheme(ThemeCfg theme, String uid) {
     return null;
@@ -29,7 +36,13 @@ class IPacientServiceImpl extends IPacientService {
   }
 
   @override
-  Future<void> sendMsg(String uid, String msg) {
-    return null;
+  Future<void> sendMsg(String uid, String msg) async {
+    try {
+      var data = {'uid': uid, 'msg': msg};
+      HttpsCallableResult result = await callableMobErasPacientPush.call(data);
+      Logger.d(result?.data);
+    } catch (e) {
+      Logger.e('sendpush', e: e);
+    }
   }
 }

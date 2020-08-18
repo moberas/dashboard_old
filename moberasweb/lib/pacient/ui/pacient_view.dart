@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:moberasweb/locator.dart';
+import 'package:moberasweb/login/models/user_profile.dart';
+import 'package:moberasweb/pacient/services/pacient_service_interface.dart';
 import 'package:moberasweb/pacient/ui/pacient_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
-import 'pacient_profile_viewmodel.dart';
-
 class PacientView extends StatelessWidget {
-  var textController;
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PacientViewModel>.reactive(
         viewModelBuilder: () => PacientViewModel(),
-        //onModelReady: (model) => ,
         builder: (context, model, child) => Scaffold(
               body: Scrollbar(
                 child: SingleChildScrollView(
@@ -51,48 +48,24 @@ class PacientView extends StatelessWidget {
                                     width: 15,
                                   )
                                 ]),
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.center,
-                                      child: Text('Lista de pacientes:\n'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        child: Visibility(
-                                          visible: true,
-                                          child: _PacientList(),
-                                        ),
+                            Visibility(
+                              visible: model.pacients != null &&
+                                  model.pacients.isNotEmpty,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: Text('Lista de pacientes:\n'),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: _PacientList(),
                                       ),
-                                    ),
-                                    ButtonBar(
-                                      children: [
-                                        FlatButton(
-                                            onPressed: () =>
-                                                _messageModalBottomSheet(
-                                                    context),
-                                            child: Text('Enviar Mensagem')),
-                                        FlatButton(
-                                          onPressed: () {
-                                            model.profile(model.pacients[0]);
-                                          },
-                                          child: Text('Perfil do Paciente'),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
+                                    ],
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -103,8 +76,51 @@ class PacientView extends StatelessWidget {
               ),
             ));
   }
+}
 
-  void _messageModalBottomSheet(BuildContext context) {
+class _PacientList extends ViewModelWidget<PacientViewModel> {
+  _PacientList({Key key}) : super(key: key, reactive: true);
+
+  @override
+  Widget build(BuildContext context, PacientViewModel viewModel) =>
+      viewModel.pacients != null && viewModel.pacients.isNotEmpty
+          ? ListView.builder(
+              shrinkWrap: true,
+              itemCount: viewModel.pacients?.length,
+              itemBuilder: (context, index) => Container(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(viewModel.pacients[index].uid),
+                  ButtonBar(
+                    children: [
+                      FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7.0),
+                              side: BorderSide(
+                                  color: Theme.of(context).primaryColor)),
+                          onPressed: () => _messageModalBottomSheet(
+                              context, viewModel.pacients[index]),
+                          child: Text(' Enviar Mensagem ')),
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7.0),
+                            side: BorderSide(
+                                color: Theme.of(context).primaryColor)),
+                        onPressed: () {
+                          viewModel.profile(viewModel.pacients[0]);
+                        },
+                        child: Text(' Visualizar perfil '),
+                      )
+                    ],
+                  ),
+                ],
+              )),
+            )
+          : Container();
+
+  void _messageModalBottomSheet(BuildContext context, UserProfile userProfile) {
+    var msgTextController = TextEditingController();
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -120,7 +136,7 @@ class PacientView extends StatelessWidget {
                       IconButton(
                         icon: Icon(
                           Icons.cancel,
-                          color: Colors.blue,
+                          color: Theme.of(context).primaryColor,
                           size: 25,
                         ),
                         onPressed: () {
@@ -133,7 +149,7 @@ class PacientView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller: textController,
+                          controller: msgTextController,
                           keyboardType: TextInputType.name,
                           enableSuggestions: true,
                           decoration: InputDecoration(labelText: 'Mensagem'),
@@ -147,8 +163,8 @@ class PacientView extends StatelessWidget {
                           onPressed: () => Navigator.of(context).pop(),
                           child: Text('Cancelar')),
                       FlatButton(
-                        // TODO inserir rota para envio da mensagem
-                        onPressed: () => null,
+                        onPressed: () async => await locator<IPacientService>()
+                            .sendMsg(userProfile.uid, msgTextController.text),
                         child: Text('Enviar'),
                       )
                     ],
@@ -159,19 +175,4 @@ class PacientView extends StatelessWidget {
           );
         });
   }
-}
-
-// ignore: unused_element
-class _PacientList extends ViewModelWidget<PacientViewModel> {
-  _PacientList({Key key}) : super(key: key, reactive: true);
-
-  @override
-  Widget build(BuildContext context, PacientViewModel viewModel) =>
-      viewModel.pacients != null
-          ? ListView.builder(
-              shrinkWrap: true,
-              itemCount: viewModel.pacients?.length,
-              itemBuilder: (context, index) =>
-                  Container(child: Text(viewModel.pacients[index].displayName)))
-          : CircularProgressIndicator();
 }

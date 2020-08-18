@@ -5,12 +5,10 @@ import 'package:google_maps/google_maps.dart';
 import 'dart:ui' as ui;
 
 Widget getMap(double latitude, double longitude) {
-
   String htmlId = '7';
 
   // ignore: undefined_prefixed_name
   ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
-
     final location = LatLng(latitude, longitude);
 
     final mapOptions = MapOptions()
@@ -28,8 +26,7 @@ Widget getMap(double latitude, double longitude) {
     Marker(MarkerOptions()
       ..position = location
       ..map = map
-      ..title = 'Moberas'
-    );
+      ..title = 'Moberas');
 
     return elem;
   });
