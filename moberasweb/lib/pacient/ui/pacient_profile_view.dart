@@ -18,7 +18,7 @@ class PacientProfileView extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
-          color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 30),
+          color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 25),
     );
   }
 
